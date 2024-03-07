@@ -47,19 +47,24 @@ $(".btn").click(function (){
     playSound(userChosenColour);
     animatePress(userChosenColour);
     checkAnswer(level);
+
+    console.log(gamePattern);
+    console.log(userClickedPattern);
 })
 
 
 function checkAnswer(currentLevel){
 
-    for(var i = 0; i < level; i++){
-        if(userClickedPattern[i] != gamePattern[i]){
-            $("#level-title").text("Game Over");
-            return false;
+    if(currentLevel == userClickedPattern.length){
+        for(var i = 0; i < level; i++){
+            if(userClickedPattern[i] != gamePattern[i]){
+                $("#level-title").text("Game Over");
+                return;
+            }
         }
-    }
-    setTimeout(nextSequence, 1000);
-    userClickedPattern = [];
-    return true;
+        setTimeout(nextSequence, 1000);
+        userClickedPattern = [];
+        return;
+    } 
 
 }
